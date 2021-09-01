@@ -44,6 +44,12 @@ redis-kata  service  50        running  2021-08-31T07:13:20Z
 ```
 
 ```console
+$ ctr -n nomad
+CONTAINER          										IMAGE    						 RUNTIME
+redis-task-kata-9fe4945c-afde-9fbb-901b-acd6801d6159    docker.io/library/redis:alpine   io.containerd.kata.v2
+```
+
+```console
 $ sudo kata-runtime list
 ID                                                     PID         STATUS      BUNDLE                                                                                                     CREATED                          OWNER
 redis-task-kata-9fe4945c-afde-9fbb-901b-acd6801d6159   -1          running     /run/containerd/io.containerd.runtime.v2.task/nomad/redis-task-kata-9fe4945c-afde-9fbb-901b-acd6801d6159   2021-08-31T07:13:23.135994168Z   #0
