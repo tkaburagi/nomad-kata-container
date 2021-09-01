@@ -1,9 +1,9 @@
 
 ## Prep Ubuntu
+
+I tested with the AWS `i3.metal` VM.
 ```
-git clone thisrepo
 sudo apt update
-sudo apt insatll -y golang
 sudo apt install -y qemu-kvm libvirt-bin virtinst bridge-utils libosinfo-bin libguestfs-tools virt-top
 ARCH=$(arch)
 BRANCH="${BRANCH:-master}"
@@ -29,6 +29,8 @@ chmod +x containerd-driver
 
 ## Run
 ```
+cd ~
+git clone thisrepo
 cd thisrepodir
 nohup sudo nomad agent -config=server.hcl > server.out &
 nohup sudo nomad agent -config=client.hcl > client.out &
@@ -47,3 +49,14 @@ ID                                                     PID         STATUS      B
 redis-task-kata-9fe4945c-afde-9fbb-901b-acd6801d6159   -1          running     /run/containerd/io.containerd.runtime.v2.task/nomad/redis-task-kata-9fe4945c-afde-9fbb-901b-acd6801d6159   2021-08-31T07:13:23.135994168Z   #0
 ```
 
+## Auto healing test
+```
+ps -ef | grep redis-task-kata
+kill -9 (PID)
+sudo kata-runtime list
+sudo kata-runtime list
+sudo kata-runtime list
+sudo kata-runtime list
+sudo kata-runtime list
+...
+```
